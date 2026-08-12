@@ -1,0 +1,27 @@
+1. Introduction to AI,ML,DL
+2. Introduction to GenAI,Tools,Agents,
+AgenticAI
+3. Getting started with AI programming
+4. Downloading and setting python path
+locate python installation folder and Scripts folder
+edit the system environment variables
+environment variables
+path - > new
+add both python and Scripts folder to the path
+add to the path
+5. Downloading and installing visual studio code
+6. Interfacing with AI model
+7. Signup and login to cohere.com
+8. Generate API key
+9. Playground
+10. Generating code for sample chat
+11. Creating virtual environment
+python -m venv myenv
+activating virtual environment
+.\myenv\Scripts\activate
+12. Installing libraries
+pip install cohere
+13. Command line chatbot
+14. Webchatbot using streamlit and cohere
+15. Transformer architecture
+https://poloclub.github.io/transformer-explainer/

@@ -1,0 +1,26 @@
+Agenda:
+1. Recap of day 1
+2. Audio and image
+3. RAG
+Knowledgebase - document,api,database
+chunking and embedding
+
+SQLite - lightweight database
+
+
+
+change the title of chatbot
+from 
+RAG Chat With Uploaded PDF
+Malnad Engineering College Chatbot
+use placement.pdf
+
+run program 4
+
+RAG
+Huggingface
+
+
+
+
+
