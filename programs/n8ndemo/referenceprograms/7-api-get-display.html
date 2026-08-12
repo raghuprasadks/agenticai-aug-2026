@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Placeholder</title>
+</head>
+<body>
+    <hi>Json place holder get - todos</hi>
+    <button onclick="getTodos()">Get Todos</button>
+    <div id="todos">
+        <Label>User Id</Label><p id="userId"></p><br>
+        <Label>Id</Label>
+        <p id="id"></p><br>
+        <Label>Title</Label>
+        <p id="title"></p><br>
+        <Label>Completed</Label>
+        <p id="completed"></p><br>
+    </div>
+    <script>
+        function getTodos() {
+            fetch('https://jsonplaceholder.typicode.com/todos/1')
+                .then(response => response.json())
+                .then(json => {
+                    document.getElementById('userId').textContent = json.userId;
+                    document.getElementById('id').textContent = json.id;
+                    document.getElementById('title').textContent = json.title;
+                    document.getElementById('completed').textContent = json.completed;
+                })
+                .catch(error => console.error('Error fetching data: ', error));
+        }
+    </script>
+    
+</body>
+</html>

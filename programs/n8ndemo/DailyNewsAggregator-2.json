@@ -1,0 +1,156 @@
+{
+  "name": "DailyNewsAggregator-2",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes"
+            },
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "1d11ad52-6f79-4e30-b5f8-3edb490961c3",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "url": "https://newsapi.org/v2/top-headlines",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "country",
+              "value": "us"
+            },
+            {
+              "name": "apiKey",
+              "value": "54bb5ed5a7f246aaa2c1f75a3062e506"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "0a47a2e9-b8fb-48e5-b4a3-a31a545b2157",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "03575e80-29be-40f8-bd7a-92afa1cb07b3",
+              "name": "articles[0].title",
+              "value": "={{ $json.articles[0].title }}",
+              "type": "string"
+            },
+            {
+              "id": "dabd986c-09f3-4c0d-bfa4-e5be7af98f86",
+              "name": "articles[0].url",
+              "value": "={{ $json.articles[0].url }}",
+              "type": "string"
+            },
+            {
+              "id": "8a42a1b6-ff3e-469f-8e8c-edcac8f3cdca",
+              "name": "articles[0].publishedAt",
+              "value": "={{ $json.articles[0].publishedAt }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        416,
+        0
+      ],
+      "id": "7927d256-475b-48c6-be26-c4bb54477c8f",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "sendTo": "prasadraghuks@gmail.com",
+        "subject": "=Top News - News API",
+        "message": "={{ $json.articles[0].title }}\n{{ $json.articles[0].url }}\n{{ $json.articles[0].publishedAt }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        624,
+        0
+      ],
+      "id": "c1287fb0-fa1d-4ab2-84d2-48370be94d6a",
+      "name": "Send a message",
+      "webhookId": "827ab4bb-6581-45b1-be98-c360b399657e",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "OuXDV2Ukj6DEUhef",
+          "name": "Gmail account 3"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "634e6af7-8eb6-4d7c-99a6-d326176722ea",
+  "meta": {
+    "instanceId": "caee76afb472a2b9e6c82bc9f4bf2c516f7fd728cdb4ad78a412b649d514bfd1"
+  },
+  "id": "viMjBeECgI3kgPeQ",
+  "tags": []
+}

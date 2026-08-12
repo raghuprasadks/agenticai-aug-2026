@@ -1,0 +1,144 @@
+{
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 10
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "77d0e429-5730-4883-ad6f-cd7e095590e6",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.openweathermap.org/data/2.5/weather?q=bangalore&&units=metric&appid=384db1ce93218e20fd384d3016372238",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "5b855e8a-536b-47b7-b486-1bb1c7616238",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "8da38ae6-7f74-4d37-ac86-ad2c6420b1aa",
+              "name": "main.temp",
+              "value": "={{ $json.main.temp }}",
+              "type": "number"
+            },
+            {
+              "id": "be87091a-9134-4cb9-8d35-6ca5aa53ff1b",
+              "name": "main.humidity",
+              "value": "={{ $json.main.humidity }}",
+              "type": "number"
+            },
+            {
+              "id": "5f66c909-7f95-44ba-8fb0-6e4a6b68d10b",
+              "name": "wind.speed",
+              "value": "={{ $json.wind.speed }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        416,
+        0
+      ],
+      "id": "edca8117-826c-4285-aea2-9c994a43f2cd",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "sendTo": "prasadraghuks@gmail.com",
+        "subject": "openweathermap - weather info ",
+        "message": "=Temperature : {{ $json.main.temp }} Humidity : {{ $json.main.humidity }} Wind Speed : {{ $json.wind.speed }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        624,
+        0
+      ],
+      "id": "764a33d8-cc34-4dce-80e3-0189f44c5838",
+      "name": "Send a message",
+      "webhookId": "c718d180-7a17-44eb-90d2-5c7491b1fad6",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "OuXDV2Ukj6DEUhef",
+          "name": "Gmail account 3"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "c9a6a018-c0a8-4de3-bb31-895040a2d071",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "caee76afb472a2b9e6c82bc9f4bf2c516f7fd728cdb4ad78a412b649d514bfd1"
+  },
+  "id": "scR2sdZkmsvfswNh",
+  "tags": []
+}

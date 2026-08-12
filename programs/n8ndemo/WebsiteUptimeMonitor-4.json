@@ -1,0 +1,179 @@
+{
+  "name": "WebsiteUptimeMonitor-4",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes"
+            },
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -624,
+        96
+      ],
+      "id": "fb4ff098-112c-4610-9bcb-79a885b8ec16",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "url": "https://kaushalya.tech/",
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": true
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -416,
+        96
+      ],
+      "id": "281e461a-4cb6-4ed4-b20e-d1888407300f",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "sendTo": "prasadraghuks@gmail.com",
+        "subject": "www.kaushalya.tech is down",
+        "message": "www.kaushalya.tech is down",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        48,
+        80
+      ],
+      "id": "89612fe6-2d3a-420c-a15e-8485a60665e8",
+      "name": "Send a message",
+      "webhookId": "d56818e7-a48a-47bf-9967-bef054f7d229",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "x5tIgXObL4tJZuKH",
+          "name": "Gmail account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{$json[\"statusCode\"]}}",
+                    "rightValue": 200,
+                    "operator": {
+                      "type": "number",
+                      "operation": "notEquals"
+                    },
+                    "id": "79e17455-7694-424e-8caf-9ea62a83c47c"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "c72c4f65-3864-4acd-9ffa-8a42b2bea4c0",
+                    "leftValue": "={{$json[\"statusCode\"]}}",
+                    "rightValue": 200,
+                    "operator": {
+                      "type": "number",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        -208,
+        96
+      ],
+      "id": "3836383a-28ab-44c1-afbf-9abefd95185a",
+      "name": "Switch"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "927e3ded-f212-41b3-83d2-e7bf8ada53d6",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "a75880c5e3a3f905fd123b97ecc37904df9d7c2cc651d637deaa33d91353dc82"
+  },
+  "id": "oLfYKS9HsYqxI8zD",
+  "tags": []
+}

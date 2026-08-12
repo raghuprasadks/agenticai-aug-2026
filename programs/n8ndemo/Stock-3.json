@@ -1,0 +1,191 @@
+{
+  "name": "Stock-3",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours"
+            },
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "c865f7d4-54c6-47f9-b021-a157a00f2928",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "url": "https://finnhub.io/api/v1/quote?symbol=AAPL&token=d6ltal1r01quej91dfe0d6ltal1r01quej91dfeg",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "e0d3c486-f3b1-463c-88c5-99351b4f42c5",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "cb3d5c52-b11f-49c6-9577-dcd6139d1127",
+              "name": "h",
+              "value": "={{ $json.h }}",
+              "type": "number"
+            },
+            {
+              "id": "c0c7d742-b31b-4247-8b36-e1ff16dde6fc",
+              "name": "l",
+              "value": "={{ $json.l }}",
+              "type": "number"
+            },
+            {
+              "id": "c6f1a7da-61fc-4161-8c13-8e2238f2d7c8",
+              "name": "c",
+              "value": "={{ $json.c }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        416,
+        0
+      ],
+      "id": "b26b6e33-7885-41b6-90ff-968b66a11849",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1eIegckLrf1XY92N5RZkbJeKtEjllk7QoawbyN7pwPP0/edit?ouid=108954119998672706865",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1eIegckLrf1XY92N5RZkbJeKtEjllk7QoawbyN7pwPP0/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "h",
+              "displayName": "h",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "l",
+              "displayName": "l",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "c",
+              "displayName": "c",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        624,
+        0
+      ],
+      "id": "4d06e909-77f6-4a25-941c-ec03efe11c8b",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "89uX0lL69aLJ8CND",
+          "name": "Google Sheets account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "5e8d5e58-2a97-462e-8fb1-674a599238e2",
+  "meta": {
+    "instanceId": "caee76afb472a2b9e6c82bc9f4bf2c516f7fd728cdb4ad78a412b649d514bfd1"
+  },
+  "id": "LNWCqRC1SZSVrvMs",
+  "tags": []
+}
