@@ -1,0 +1,47 @@
+Agenda:
+1. Langchain
+programs
+2.N8N
+Workflow automation
+
+3. create following tools
+simpleinterest(p,r,t)
+output : simpleinterest
+
+celciustofarenheit(c)
+output:farenheit
+
+electricbill(units)
+output : amount to pay
+
+bill amount is dependent on units consumed
+
+units <100
+price/unit = 3
+units>=100 <200
+price/unit = 4
+units>=200 <300
+price/unit = 5
+units>=300 
+price/unit = 7
+
+Assignment:
+
+create weather tool.
+input : location
+output : 
+temperature
+humidity
+It has call an weather api
+openweathermap
+
+https://openweathermap.org/
+Sign up,login
+get api key
+
+https://api.openweathermap.org/data/2.5/weather?q=bangalore&&units=metric&appid=384db1ce93218e20fd384d3016372238
+
+where 
+q=<location>
+appid=<apikey>
+
