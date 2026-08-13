@@ -1,0 +1,12 @@
+https://www.linkedin.com/posts/v-chandra-sekhar_rag-projects-guide-with-implementation-guide-activity-7421386097424982016-_TMv/
+
+So I curated 10 end-to-end RAG projects, covering multiple domains 👇
+✅ Agriculture (Crop Management Q&A)
+✅ Education (Interactive Textbooks, Lesson Plan Generator)
+✅ Enterprise (Internal Document Assistant)
+✅ Research (Academic Research Companion)
+✅ Government (Rural Scheme Advisor)
+✅ Healthcare (Native Language Health Advisory)
+✅ Legal (Legal Document Navigator)
+✅ Business & Startups (Registration & Compliance Guide)
+✅ Construction (Building Code Advisor)

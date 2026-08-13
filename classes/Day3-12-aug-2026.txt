@@ -1,0 +1,82 @@
+Agenda:
+1. Recap
+RAG
+Huggingface
+
+learn how to use GitHub
+git commands
+https://www.w3schools.com/git/
+
+Create project for huggingface deployment
+
+1.create huggingfacedemo folder
+copy 2 files from the GitHub
+2. open huggingfacedemo folder
+in vscode
+3. create and activate virtual
+environment
+4. Install the required libraries
+
+pip install -r requirements.txt
+
+to create a file containing 
+installed libraries
+
+pip freeze > requirementsnew.txt
+
+
+Login to huggingface.io
+click spaces
+New Space
+
+click spaces
+click
+language translation
+search for nllb
+nllb
+https://huggingface.co/spaces/UNESCO/nllb
+next to app link you can
+find file link
+click on the file link
+and download all the files
+create nllb folder in your system
+copy all the downloaded file
+create virtual environment
+pip install -r requirements.txt
+python app.py
+
+
+1.create projects folder
+2.create cropmagement folder inside that
+3. open in visual studio code
+4. create virtual environment
+5. In co-pilot give following prompt
+i want to create a rag based chatbot for crop management.
+This will be used by farmers.Farmers will ask different
+questions related to crops.The bot should answer the questions
+There should be a facility to upload multiple documents related
+to crop management.
+I prefer using python,steamlit,cohere,chromadb
+
+2. AI Agents 
+
+Webservices
+jsonplaceholder
+
+http post
+http get
+http put
+http delete
+
+
+openweathermap
+https://api.openweathermap.org/data/4.0/onecall/current?lat=52.2297&lon=21.0122&units=metric&lang=en&appid={API key} 
+
+https://pypi.org/project/langchain-cohere/
+3. Langchain
+
+in chatgpt
+
+tools in langchain_community.tools
+
+4. Workflow automation using N8N
