@@ -45,3 +45,19 @@ where
 q=<location>
 appid=<apikey>
 
+
+Installation of node.js
+
+https://nodejs.org/en/download
+
+windowsinstaller.msi
+
+open command prompt
+node --version
+
+npm install -g n8n
+
+npm list -g --depth=0
+npm prefix -g
+
+console.cloud.google.com
