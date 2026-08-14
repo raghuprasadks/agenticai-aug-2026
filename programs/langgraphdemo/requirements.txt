@@ -1,0 +1,10 @@
+langgraph
+langchain
+langchain-community
+langchain-cohere
+langchain-chroma
+langchain-text-splitters
+pypdf
+duckduckgo-search
+python-dotenv
+ddgs
